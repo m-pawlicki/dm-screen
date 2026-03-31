@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Classes(Enum):
+class ClassNames(Enum):
     BAR = "Barbarian"
     BRD = "Bard"
     CLR = "Cleric"
@@ -13,3 +13,6 @@ class Classes(Enum):
     SOR = "Sorcerer"
     WRK = "Warlock"
     WIZ = "Wizard"
+
+class Classes():
+    pass
