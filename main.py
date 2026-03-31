@@ -1,17 +1,13 @@
 import npyscreen
 
+from ui import top, create, load
+
 class MainApplication(npyscreen.NPSAppManaged):
     def onStart(self):
-        self.registerForm("MAIN", MainForm())
+        self.registerForm("MAIN", top.TopMenu())
+        self.registerForm("LOAD", create.CreateMenu())
+        self.registerForm("CREATE", load.LoadMenu())
 
-# This form class defines the display that will be presented to the user.
-
-class MainForm(npyscreen.Form):
-    def create(self):
-        self.add(npyscreen.TitleText, name = "Welcome to DM-Screen!" )
-
-    def afterEditing(self):
-        self.parentApp.setNextForm(None)
 
 if __name__ == '__main__':
     App = MainApplication()
