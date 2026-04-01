@@ -1,6 +1,6 @@
 from enum import Enum
 
-class SkillNames(Enum):
+class SkillType(Enum):
     acrobatics = "Acrobatics"
     animal = "Animal Handling"
     arcana = "Arcana"

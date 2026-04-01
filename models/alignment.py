@@ -1,6 +1,6 @@
 from enum import Enum
 
-class Alignment(Enum):
+class AlignmentType(Enum):
     LG = "Lawful Good"
     NG = "Neutral Good"
     CG = "Chaotic Good"

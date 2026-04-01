@@ -1,7 +1,7 @@
 from enum import Enum
-import math, json
+import math
 
-class StatNames(Enum):
+class StatType(Enum):
     STR = "Strength"
     DEX = "Dexterity"
     CON = "Constitution"
@@ -18,17 +18,26 @@ class Stats():
         self.int = int
         self.wis = wis
         self.cha = cha
+        self.str_mod = self.calc_modifier(self.str)
+        self.dex_mod = self.calc_modifier(self.dex)
+        self.con_mod = self.calc_modifier(self.con)
+        self.int_mod = self.calc_modifier(self.int)
+        self.wis_mod = self.calc_modifier(self.wis)
+        self.cha_mod = self.calc_modifier(self.cha)
 
     def calc_modifier(self, stat):
         return math.floor((stat - 10)/2)
     
-    def to_json(self):
+    def to_obj(self):
         obj = {
-            StatNames.STR: self.str,
-            StatNames.DEX: self.dex,
-            StatNames.CON: self.con,
-            StatNames.INT: self.int,
-            StatNames.WIS: self.wis,
-            StatNames.CHA: self.cha
+            StatType.STR: self.str,
+            StatType.DEX: self.dex,
+            StatType.CON: self.con,
+            StatType.INT: self.int,
+            StatType.WIS: self.wis,
+            StatType.CHA: self.cha
         }
-        return json.dumps(obj)
+        return obj
+    
+    def calc_init(self):
+        return self.dex_mod
