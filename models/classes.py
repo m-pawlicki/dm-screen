@@ -16,7 +16,7 @@ class ClassType(Enum):
     WIZ = "Wizard"
 
 class Classes():
-    def __init__(self, job):
+    def __init__(self, job: ClassType):
         match job:
             case ClassType.BAR:
                 self.hit_die = 12

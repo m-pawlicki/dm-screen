@@ -2,6 +2,8 @@ import npyscreen
 
 class TopMenu(npyscreen.ActionForm):
     def create(self):
+        self.add(npyscreen.TitleFixedText, name = "DM-Screen: Main Menu")
+        self.add(npyscreen.TitleFixedText, name = "------------")
         self.choice = self.add(npyscreen.TitleSelectOne,
                                name="Select an Option:",
                                values=["Create Character", "Load Character", "Exit"],
@@ -19,6 +21,7 @@ class TopMenu(npyscreen.ActionForm):
                 self.load_char()
             case 2:
                 self.exit_app()
+        self.editing = False
 
     def on_cancel(self):
         self.parentApp.setNextForm(None)

@@ -41,3 +41,21 @@ class Stats():
     
     def calc_init(self):
         return self.dex_mod
+    
+    def calc_ac(self):
+        return 10 + self.dex_mod
+    
+    def calc_perception(self):
+        return 10 + self.wis_mod
+    
+    def calc_proficiency(self, level):
+        if level >= 1 and level <= 4:
+            return 2
+        elif level >= 5 and level <= 8:
+            return 3
+        elif level >= 9 and level <= 12:
+            return 4
+        elif level >= 13 and level <= 16:
+            return 5
+        else:
+            return 6
