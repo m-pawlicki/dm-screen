@@ -1,14 +1,35 @@
 import npyscreen
 
-class TopMenu(npyscreen.Form):
+class TopMenu(npyscreen.ActionForm):
     def create(self):
-        F  = npyscreen.Form(name = "DM-Screen - Main Menu")
-        ms = F.add(npyscreen.TitleSelectOne, max_height=4, value = [1,], name="Choose an option:",
-                values = ["Create Character","Load Character"], scroll_exit=True)
+        self.choice = self.add(npyscreen.TitleSelectOne,
+                               name="Select an Option:",
+                               values=["Create Character", "Load Character", "Exit"],
+                               scroll_exit=True)
         
 
-        
-        F.edit()
-    
-    def afterEditing(self):
+    def on_ok(self):
+        selection = self.choice.value
+        if not selection:
+            return
+        match selection[0]:
+            case 0:
+                self.make_char()
+            case 1:
+                self.load_char()
+            case 2:
+                self.exit_app()
+
+    def on_cancel(self):
         self.parentApp.setNextForm(None)
+        self.editing = False
+
+    def make_char(self):
+        self.parentApp.setNextForm("CREATE")
+
+    def load_char(self):
+        self.parentApp.setNextForm("LOAD")
+
+    def exit_app(self):
+        self.parentApp.setNextForm(None)
+        self.editing = False

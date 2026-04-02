@@ -1,11 +1,8 @@
 import npyscreen
 
-class LoadMenu(npyscreen.Form):
+class LoadMenu(npyscreen.ActionForm):
     def create(self):
-        F  = npyscreen.Form(name = "DM-Screen - Load Character")
-        self.add(npyscreen.TitleText, name = "Character Name: ", value= "")
-        
-        F.edit()
-    
+        self.add(npyscreen.TitleText, name = "Character Name: ", value = "")
+
     def afterEditing(self):
         self.parentApp.setNextForm("MAIN")
