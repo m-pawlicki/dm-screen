@@ -22,4 +22,5 @@ class SkillType(Enum):
 
 
 class Skills():
-    pass
+    def __init__(self):
+        pass
