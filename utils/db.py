@@ -53,12 +53,27 @@ class CharacterDatabase(object):
         db.commit()
         c.close()
 
-    def update_character(self, char_name, player_name, char_class, level, bg, race, alignment, exp, str, dex, con, int, wis, cha):
+    def update_character(self, char_id, char_name="", player_name="", char_class="", level="", bg="", race="", alignment="", exp="", str="", dex="", con="", int="", wis="", cha=""):
         db = sqlite3.connect(self.db_filename)
         c = db.cursor()
         c.execute(
-            """UPDATE character_base set
-            """
+            """UPDATE character_base set 
+            character_name=?, 
+            player_name=?, 
+            class=?, 
+            level=?, 
+            background=?, 
+            race=?, 
+            alignment=?, 
+            exp=?, 
+            strength=?, 
+            dexterity=?, 
+            constitution=?,
+            intelligence=?,
+            wisdom=?,
+            charisma=? 
+            WHERE id=?
+            """, (char_name, player_name, char_class, level, bg, race, alignment, exp, str, dex, con, int, wis, cha, char_id)
             )
         db.commit()
         c.close()
