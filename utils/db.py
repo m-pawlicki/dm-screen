@@ -8,7 +8,7 @@ class CharacterDatabase(object):
         c = db.cursor()
         c.execute(
             """CREATE TABLE IF NOT EXISTS character_base
-            (id INTEGER PRIMARY KEY, 
+            (char_id INTEGER PRIMARY KEY, 
             character_name TEXT, 
             player_name TEXT,
             class TEXT,
@@ -72,7 +72,7 @@ class CharacterDatabase(object):
             intelligence=?,
             wisdom=?,
             charisma=? 
-            WHERE id=?
+            WHERE char_id=?
             """, (char_name, player_name, char_class, level, bg, race, alignment, exp, str, dex, con, int, wis, cha, char_id)
             )
         db.commit()
@@ -82,7 +82,7 @@ class CharacterDatabase(object):
         db = sqlite3.connect(self.db_filename)
         c = db.cursor()
         c.execute(
-            "DELETE from character_base where character_name=?", (char_name)
+            "DELETE from character_base where character_name=?", (char_name,)
             )
         db.commit()
         c.close()
@@ -101,7 +101,7 @@ class CharacterDatabase(object):
         db = sqlite3.connect(self.db_filename)
         c = db.cursor()
         c.execute(
-            "SELECT * from character_base WHERE id=?", (char_id)
+            "SELECT * from character_base WHERE char_id=?", (char_id,)
             )
         characters = c.fetchall()
         c.close()
@@ -111,7 +111,7 @@ class CharacterDatabase(object):
         db = sqlite3.connect(self.db_filename)
         c = db.cursor()
         c.execute(
-            "SELECT * from character_base WHERE character_name=?", (char_name)
+            "SELECT * from character_base WHERE character_name=?", (char_name,)
             )
         characters = c.fetchall()
         c.close()

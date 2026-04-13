@@ -6,7 +6,7 @@ class TopMenu(npyscreen.ActionForm):
         self.add(npyscreen.TitleFixedText, name = "------------")
         self.choice = self.add(npyscreen.TitleSelectOne,
                                name="Select an Option:",
-                               values=["Create Character", "Load Character", "Exit"],
+                               values=["Create Character", "Load Character", "List Characters", "Exit"],
                                scroll_exit=True)
         
 
@@ -20,6 +20,8 @@ class TopMenu(npyscreen.ActionForm):
             case 1:
                 self.load_char()
             case 2:
+                self.list_char()
+            case 3:
                 self.exit_app()
         self.editing = False
 
@@ -32,6 +34,9 @@ class TopMenu(npyscreen.ActionForm):
 
     def load_char(self):
         self.parentApp.setNextForm("LOAD")
+
+    def list_char(self):
+        self.parentApp.setNextForm("LIST")
 
     def exit_app(self):
         self.parentApp.setNextForm(None)
