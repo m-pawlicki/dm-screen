@@ -35,6 +35,8 @@ class ListMenu(npyscreen.FormMutt):
     MAIN_WIDGET_CLASS = ListCharacter
 
     def beforeEditing(self):
+        self.wStatus1.value = "DM Screen : List Characters"
+        self.wStatus2.value = "^A: Add | ^D: Delete | ^X: Exit"
         self.update_list()
 
     def update_list(self):
