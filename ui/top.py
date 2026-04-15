@@ -2,8 +2,7 @@ import npyscreen
 
 class TopMenu(npyscreen.ActionForm):
     def create(self):
-        self.add(npyscreen.TitleFixedText, name = "DM-Screen: Main Menu")
-        self.add(npyscreen.TitleFixedText, name = "------------")
+        self.name = "DM-Screen: Main Menu"
         self.choice = self.add(npyscreen.TitleSelectOne,
                                name="Select an Option:",
                                values=["Create Character", "Load Character", "List Characters", "Exit"],

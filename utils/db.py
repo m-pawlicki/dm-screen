@@ -28,32 +28,35 @@ class CharacterDatabase(object):
         db.commit()
         c.close()
 
-    def add_character(self, char_name, player_name, char_class, level, bg, race, alignment, exp, str, dex, con, int, wis, cha):
-        db = sqlite3.connect(self.db_filename)
-        c = db.cursor()
-        c.execute(
-            """INSERT into character_base(
-            character_name, 
-            player_name, 
-            class, 
-            level, 
-            background, 
-            race, 
-            alignment, 
-            exp, 
-            strength, 
-            dexterity, 
-            constitution, 
-            intelligence, 
-            wisdom, 
-            charisma)
-            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)
-            """, (char_name, player_name, char_class, level, bg, race, alignment, exp, str, dex, con, int, wis, cha)
-            )
-        db.commit()
-        c.close()
+    def add_character(self, char_name, player_name, job, level, bg, race, alignment, exp, str, dex, con, int, wis, cha):
+        try:
+            db = sqlite3.connect(self.db_filename)
+            c = db.cursor()
+            c.execute(
+                """INSERT into character_base(
+                character_name, 
+                player_name, 
+                class, 
+                level, 
+                background, 
+                race, 
+                alignment, 
+                exp, 
+                strength, 
+                dexterity, 
+                constitution, 
+                intelligence, 
+                wisdom, 
+                charisma)
+                VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                """, (char_name, player_name, job, level, bg, race, alignment, exp, str, dex, con, int, wis, cha)
+                )
+            db.commit()
+            c.close()
+        except sqlite3.Error as e:
+            print(e)
 
-    def update_character(self, char_id, char_name="", player_name="", char_class="", level="", bg="", race="", alignment="", exp="", str="", dex="", con="", int="", wis="", cha=""):
+    def update_character(self, char_id, char_name="", player_name="", job="", level="", bg="", race="", alignment="", exp="", str="", dex="", con="", int="", wis="", cha=""):
         db = sqlite3.connect(self.db_filename)
         c = db.cursor()
         c.execute(
@@ -73,16 +76,25 @@ class CharacterDatabase(object):
             wisdom=?,
             charisma=? 
             WHERE char_id=?
-            """, (char_name, player_name, char_class, level, bg, race, alignment, exp, str, dex, con, int, wis, cha, char_id)
+            """, (char_name, player_name, job, level, bg, race, alignment, exp, str, dex, con, int, wis, cha, char_id)
             )
         db.commit()
         c.close()
 
-    def delete_character(self, char_name):
+    def delete_character_by_name(self, char_name):
         db = sqlite3.connect(self.db_filename)
         c = db.cursor()
         c.execute(
             "DELETE from character_base where character_name=?", (char_name,)
+            )
+        db.commit()
+        c.close()
+
+    def delete_character_by_id(self, char_id):
+        db = sqlite3.connect(self.db_filename)
+        c = db.cursor()
+        c.execute(
+            "DELETE from character_base where char_id=?", (char_id,)
             )
         db.commit()
         c.close()

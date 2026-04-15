@@ -10,7 +10,7 @@ class ListCharacter(npyscreen.MultiLineAction):
         })
 
     def display_value(self, vl):
-        return "Character: %s, Player: %s" % (vl[1], vl[2])
+        return f"Character: {vl[1]}, Player: {vl[2]}"
 
     def actionHighlighted(self, act_on_this, key_press):
         self.parent.parentApp.getForm('CREATE').value =act_on_this[0]
@@ -21,7 +21,7 @@ class ListCharacter(npyscreen.MultiLineAction):
         self.parent.parentApp.switchForm('CREATE')
 
     def when_delete_record(self, *args, **keywords):
-        self.parent.parentApp.database.delete_character(self.values[self.cursor_line][0])
+        self.parent.parentApp.database.delete_character_by_id(self.values[self.cursor_line][0])
         self.parent.update_list()
 
 class ListMenu(npyscreen.FormMutt):
