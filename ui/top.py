@@ -29,7 +29,8 @@ class TopMenu(npyscreen.ActionForm):
         self.editing = False
 
     def make_char(self):
-        self.parentApp.setNextForm("CREATE")
+        self.parentApp.getForm("CREATE").value = None
+        self.parentApp.switchForm("CREATE")
 
     def load_char(self):
         self.parentApp.setNextForm("LOAD")

@@ -56,45 +56,50 @@ class CreateMenu(npyscreen.ActionForm):
             self.char_cha.value = ''
 
     def on_ok(self):
-        if self.char_id:
-            self.parentApp.database.update_character(
-                char_id=self.char_id, 
-                char_name=self.char_name.value, 
-                player_name=self.player_name.value, 
-                job=self.char_class.value, 
-                level=self.char_level.value, 
-                bg=self.char_bg.value, 
-                race=self.char_race.value, 
-                alignment=self.char_align.value, 
-                exp=self.char_exp.value, 
-                str=self.char_str.value,
-                dex=self.char_dex.value,
-                con=self.char_con.value,
-                int=self.char_int.value,
-                wis=self.char_wis.value,
-                cha=self.char_cha.value)
-        else:
-            self.parentApp.database.add_character(
-                self.char_name.value, 
-                self.player_name.value, 
-                self.char_class.value, 
-                self.char_level.value, 
-                self.char_bg.value, 
-                self.char_race.value, 
-                self.char_align.value, 
-                self.char_exp.value, 
-                self.char_str.value,
-                self.char_dex.value,
-                self.char_con.value,
-                self.char_int.value,
-                self.char_wis.value,
-                self.char_cha.value
-            )
+        try:
+            if self.char_id:
+                self.parentApp.database.update_character(
+                    char_id=self.char_id, 
+                    char_name=self.char_name.value, 
+                    player_name=self.player_name.value, 
+                    job=self.char_class.value, 
+                    level=int(self.char_level.value), 
+                    bg=self.char_bg.value, 
+                    race=self.char_race.value, 
+                    alignment=self.char_align.value, 
+                    exp=int(self.char_exp.value), 
+                    str=int(self.char_str.value),
+                    dex=int(self.char_dex.value),
+                    con=int(self.char_con.value),
+                    int=int(self.char_int.value),
+                    wis=int(self.char_wis.value),
+                    cha=int(self.char_cha.value))
+            else:
+                self.parentApp.database.add_character(
+                    char_name=self.char_name.value, 
+                    player_name=self.player_name.value, 
+                    job=self.char_class.value, 
+                    level=int(self.char_level.value), 
+                    bg=self.char_bg.value, 
+                    race=self.char_race.value, 
+                    alignment=self.char_align.value, 
+                    exp=int(self.char_exp.value), 
+                    str=int(self.char_str.value),
+                    dex=int(self.char_dex.value),
+                    con=int(self.char_con.value),
+                    int=int(self.char_int.value),
+                    wis=int(self.char_wis.value),
+                    cha=int(self.char_cha.value)
+                )
+            self.parentApp.switchFormPrevious()
 
-        self.parentApp.switchFormPrevious()
+        except:
+            msg = "Data mismatch. Please use integers for level, experience, and stats.\n\nHit TAB and then ENTER to confirm."
+            npyscreen.notify_confirm(msg, title="Error")
+
 
     def on_cancel(self):
         self.parentApp.switchFormPrevious()
     
     def afterEditing(self):
-        self.parentApp.setNextForm("MAIN")
+        self.parentApp.switchFormPrevious()
