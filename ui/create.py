@@ -3,8 +3,8 @@ import npyscreen
 class CreateMenu(npyscreen.ActionForm):
     def create(self):
         self.value = None
-        self.char_name = self.add(npyscreen.TitleText, name = "Character Name:")
-        self.player_name = self.add(npyscreen.TitleText, name = "Player Name:")
+        self.char_name = self.add(npyscreen.TitleText, name = "Character:")
+        self.player_name = self.add(npyscreen.TitleText, name = "Player:")
         self.char_class = self.add(npyscreen.TitleText, name = "Class:")
         self.char_level = self.add(npyscreen.TitleText, name = "Level:")
         self.char_bg = self.add(npyscreen.TitleText, name = "Background:")

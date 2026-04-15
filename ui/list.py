@@ -11,7 +11,7 @@ class ListCharacter(npyscreen.MultiLineAction):
         })
 
     def display_value(self, vl):
-        return f"Character: {vl[1]} | Player: {vl[2]}"
+        return f"Character: {vl[1]} , Player: {vl[2]}"
 
     def actionHighlighted(self, act_on_this, key_press):
         self.parent.parentApp.getForm("CREATE").value = act_on_this[0]
@@ -35,8 +35,8 @@ class ListMenu(npyscreen.FormMutt):
     MAIN_WIDGET_CLASS = ListCharacter
 
     def beforeEditing(self):
-        self.wStatus1.value = "DM Screen : List Characters"
-        self.wStatus2.value = "^A: Add | ^D: Delete | ^X: Exit"
+        self.wStatus1.value = "DM Screen : List Characters "
+        self.wStatus2.value = "^A: Add | ^D: Delete | ^X: Exit "
         self.update_list()
 
     def update_list(self):
