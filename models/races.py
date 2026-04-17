@@ -1,5 +1,5 @@
 from enum import Enum
-from stats import StatType
+from .stats import StatType
 
 class RaceType(Enum):
     DRB = "Dragonborn"
