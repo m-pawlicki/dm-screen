@@ -91,15 +91,13 @@ class CreateMenu(npyscreen.ActionForm):
                     wis=int(self.char_wis.value),
                     cha=int(self.char_cha.value)
                 )
+
             self.parentApp.switchFormPrevious()
 
         except:
-            msg = "Data mismatch. Please use integers for level, experience, and stats.\n\nHit TAB and then ENTER to confirm."
-            npyscreen.notify_confirm(msg, title="Error")
+            msg = "Data mismatch. Please use integers for level, experience, and stats."
+            npyscreen.notify_wait(msg, title="Error")
 
 
     def on_cancel(self):
-        self.parentApp.switchFormPrevious()
-    
-    def afterEditing(self):
         self.parentApp.switchFormPrevious()

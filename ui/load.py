@@ -12,11 +12,8 @@ class LoadMenu(npyscreen.ActionForm):
             self.parentApp.getForm("CREATE").value = self.res[0]
             self.parentApp.switchForm("CREATE")
         except:
-            msg = "Character not found.\n\nHit TAB and then ENTER to confirm."
-            npyscreen.notify_confirm(msg, title="Error")
+            msg = "Character not found."
+            npyscreen.notify_wait(msg, title="Error")
 
     def on_cancel(self):
-        self.parentApp.switchFormPrevious()
-
-    def afterEditing(self):
         self.parentApp.switchFormPrevious()
