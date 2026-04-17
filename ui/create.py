@@ -26,17 +26,17 @@ class CreateMenu(npyscreen.ActionForm):
             self.char_name.value = character[1]
             self.player_name.value = character[2]
             self.char_class.value = character[3]
-            self.char_level.value = character[4]
+            self.char_level.value = str(character[4])
             self.char_bg.value = character[5]
             self.char_race.value = character[6]
             self.char_align.value = character[7]
-            self.char_exp.value = character[8]
-            self.char_str.value = character[9]
-            self.char_dex.value = character[10]
-            self.char_con.value = character[11]
-            self.char_int.value = character[12]
-            self.char_wis.value = character[13]
-            self.char_cha.value = character[14]
+            self.char_exp.value = str(character[8])
+            self.char_str.value = str(character[9])
+            self.char_dex.value = str(character[10])
+            self.char_con.value = str(character[11])
+            self.char_int.value = str(character[12])
+            self.char_wis.value = str(character[13])
+            self.char_cha.value = str(character[14])
         else:
             self.name = "DM-Screen: New Character"
             self.char_id = ''
